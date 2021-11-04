@@ -30,8 +30,8 @@ spec:
                      steps{
         
                         sh '''
-                          //docker run -d --name=flaskapi -p 30080:5000 mguazzardo/flaskapi
-                          oc new-app https://github.com/mguazzardo/apiflask --name flaskapi 
+                          oc new-app https://github.com/mguazzardo/apiflask --name flaskapi
+                          oc expose svc flaskapi
                           '''
                           }
                     } //stage
