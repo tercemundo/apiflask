@@ -54,10 +54,10 @@ spec:
                     } // steps
                 } // stage
                 stage('create') {
-                    
-                    sh "oc new-app https://github.com/mguazzardo/apiflask --name flaskapi"
-                    sh "oc expose svc flaskapi || true"
-                    
+                    steps {
+                        sh "oc new-app https://github.com/mguazzardo/apiflask --name flaskapi"
+                        sh "oc expose svc flaskapi || true"
+                    }
                     } // stage
             } // stages
         } // pipeline
