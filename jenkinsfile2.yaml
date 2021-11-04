@@ -26,39 +26,15 @@ spec:
             }
 
             stages {
-                stage('preamble') {
-                    steps {
-                        script {
-                            openshift.withCluster() {
-                                openshift.withProject() {
-                                    echo "Using project: ${openshift.project()}"
-                                }
-                            }
-                        }
-                    }
-                }
-                stage('cleanup') {
-                    steps {
-                        script {
-                            openshift.withCluster() {
-                                openshift.withProject() {
-                                    // delete everything with this template label
-                                    openshift.selector("all", [ template : templateName ]).delete()
-                                    // delete any secrets with this template label
-                                    if (openshift.selector("secrets", templateName).exists()) {
-                                        openshift.selector("secrets", templateName).delete()
-                                    }
-                                }
-                            }
-                        } // script
-                    } // steps
-                } // stage
-                stage('create') {
-                    steps {
-                        sh "oc new-app https://github.com/mguazzardo/apiflask --name flaskapi"
-                        sh "oc expose svc flaskapi || true"
-                    }
-                    } // stage
+               stage('Run Container') {
+                     steps{
+        
+                        sh '''
+                          //docker run -d --name=flaskapi -p 30080:5000 mguazzardo/flaskapi
+                          oc new-app https://github.com/mguazzardo/apiflask --name flaskapi 
+                          '''
+                          }
+                    } //stage
             } // stages
         } // pipeline
       type: JenkinsPipeline
