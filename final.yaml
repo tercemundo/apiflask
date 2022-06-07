@@ -30,7 +30,7 @@ spec:
                      steps{
         
                         sh '''
-                          oc new-app https://github.com/mguazzardo/apiflask --name flaskapi --strategy=docker
+                          oc new-app https://github.com/mguazzardo/demislamer --name demislamer
                           oc expose svc flaskapi 
                           '''
                           }
