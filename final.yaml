@@ -30,8 +30,8 @@ spec:
                      steps{
         
                         sh '''
-                          oc new-app https://github.com/mguazzardo/demislamer --name demislamer
-                          oc expose svc flaskapi 
+                          oc new-app https://github.com/mguazzardo/phpfull --name phpfull
+                          oc expose svc phpfull 
                           '''
                           }
                     } //stage
