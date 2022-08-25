@@ -17,6 +17,10 @@ pipeline {
             }
             steps {
                 echo "deploying to production, version - $VERSION"
+                withCredentials([usernamePassword(credentialsId: 'ssh', usernameVariable: 'USUARIO', passwordVariable: 'CONTRASENIA')]) {
+                    sh '''
+                        sshpass -p ${CONTRASENIA} ssh -o StrictHostKeyChecking=no ${USUARIO}@172.17.0.1 'ls && hostname'
+                    '''
             }
         }
     }
