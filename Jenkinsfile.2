@@ -1,0 +1,23 @@
+pipeline {
+    agent any //cualquier agent
+    stages {
+        stage('dev') {
+            steps {
+              echo "building in dev env!"
+            }
+        }
+        stage('prod') {
+            input {
+                message "Deploy in production?"
+                ok "Deploy"
+                submitter "Debjeet Bhowmik"
+                parameters {
+                    string(name: 'Version', defaultValue: 'v1.0.4', description: 'Build version?')
+                }
+            }
+            steps {
+                echo "deploying to production, version - $VERSION"
+            }
+        }
+    }
+}
