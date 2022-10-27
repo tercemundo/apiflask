@@ -23,23 +23,23 @@ pipeline {
       }//steps
     } //stage
     
-    stage ('Deploy k8s') {
-           input {
-                message "Deploy in production?"
-                ok "Deploy"
-                submitter "Debjeet Bhowmik"
-                parameters {
-                    string(name: 'Version', defaultValue: 'v1.0.4', description: 'Build version?')
-                }
-              } 
-      steps {
-        withCredentials([usernamePassword(credentialsId: 'ssh', usernameVariable: 'USUARIO', passwordVariable: 'CONTRASENIA')]) {
-          sh '''
-           sshpass -p ${CONTRASENIA} ssh -o StrictHostKeyChecking=no ${USUARIO}@172.17.0.1 'ls'
-          '''
-        }
-      }
-    }
+    //stage ('Deploy k8s') {
+    //       input {
+    //            message "Deploy in production?"
+    //            ok "Deploy"
+    //            submitter "Debjeet Bhowmik"
+    //            parameters {
+    //                string(name: 'Version', defaultValue: 'v1.0.4', description: 'Build version?')
+    //            }
+    //          } 
+    //  steps {
+    //    withCredentials([usernamePassword(credentialsId: 'ssh', usernameVariable: 'USUARIO', passwordVariable: 'CONTRASENIA')]) {
+    //      sh '''
+    //       sshpass -p ${CONTRASENIA} ssh -o StrictHostKeyChecking=no ${USUARIO}@172.17.0.1 'ls'
+    //      '''
+    //    }
+    //  }
+    //}
 
   }//stages
 }//pipeline
